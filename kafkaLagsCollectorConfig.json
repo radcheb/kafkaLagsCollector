@@ -1,0 +1,12 @@
+{
+  "broker_list" : "localhost:6667",
+  "measurement_name" : "consumer_lags",
+  "influxdb" : {
+    "hostname":"localhost",
+    "port": 8086,
+    "username": "root",
+    "password":"root",
+    "db_name":"kafka"
+  }
+}
+
