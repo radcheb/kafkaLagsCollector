@@ -113,6 +113,8 @@ def main():
                             influxdb_conf['password'], influxdb_conf['db_name'])
 
     for group in groups:
+        if not group:
+            continue
         logger.debug("Pulling data for group " + str(group))
         metrics = getGroupMetrics(measurement_name, broker_list, group)
         if metrics is not  None:
