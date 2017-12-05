@@ -44,7 +44,7 @@ def build_point(line, group, mesearment_name):
         "partition": partition
     }
     fields = {
-        "lag": int(lag)
+        "lag": int(lag) if lag.isdigit() else None
     }
     metric = {
             "measurement": mesearment_name,
@@ -86,6 +86,7 @@ def getGroupMetrics(mesearment_name, broker_list, group):
         return None
     lines = output.split('\n')[1:]
     metrics = [build_point(line, group, mesearment_name) for line in lines if line]
+    metrics = filter(lambda metric: metric["fields"]["lag"] is not None, metrics)
     logger.debug("Sending metrics for group " + str(group))
     for metric in metrics:
         logger.debug(str(metric))
